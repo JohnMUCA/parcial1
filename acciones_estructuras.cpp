@@ -45,16 +45,6 @@ unsigned short** alinearmatriz(unsigned short n1, unsigned short n2, unsigned sh
     // Realizar rotaciones en la matriz resultante
     rotacionAntiHorario(matriz_resultante, n1, rotaciones);
 
-
-    // Imprimir la matriz resultante
-    cout << "Matriz resultante:" << endl;
-    for (int i = 0; i < n1; i++) {
-        for (int j = 0; j < n1; j++) {
-            cout << matriz_resultante[i][j] << " ";
-        }
-        cout << endl;
-    }
-
     // No liberar memoria aquí, la matriz resultante se devuelve
 
     return matriz_resultante;

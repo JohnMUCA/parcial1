@@ -16,7 +16,7 @@ unsigned short*** crearCerraduraX(int *K, unsigned short N, unsigned short* x, u
     bool banderaRotacion = 1;
     unsigned short posK = 2;
 
-    while(cantidadM <= N)
+    while(cantidadM < N)
     {
         if (contMatricesExaminadas < 4)
         {
@@ -28,7 +28,9 @@ unsigned short*** crearCerraduraX(int *K, unsigned short N, unsigned short* x, u
         banderaRotacion = 1;
         while ((rotacion2 <= 3) && banderaRotacion && (dimension1 != dimension2))
         {
-            rotacionAntiHorario(MatrizAux2, dimension2, rotacion2);
+            if (rotacion2 == 0) rotacionAntiHorario(MatrizAux2, x[0], 0);
+            else rotacionAntiHorario(MatrizAux2, x[0], 1);
+
 
             if (compararValores(MatrizAux1, MatrizAux2, K[0], K[1], K[posK]))
             {
@@ -43,12 +45,13 @@ unsigned short*** crearCerraduraX(int *K, unsigned short N, unsigned short* x, u
                 rotacion1 = rotacion2;
                 contMatricesExaminadas = 0;
                 rotacion2 = 0;
+                posK += 1;
             }
             else rotacion2 += 1;
         }
 
-        delMemoriaDinamicaMatrizmxn(MatrizAux1, x[posx - 2]);
-        delMemoriaDinamicaMatrizmxn(MatrizAux2, x[posx - 1]);
+        delMemoriaDinamicaMatrizmxn(MatrizAux1, x[0]);
+        delMemoriaDinamicaMatrizmxn(MatrizAux2, x[0]);
         dimension2 += 2;
         if (rotacion2 == 4) contMatricesExaminadas += 1;
         if (contMatricesExaminadas > 3)
@@ -62,8 +65,8 @@ unsigned short*** crearCerraduraX(int *K, unsigned short N, unsigned short* x, u
             rotacion1 = R[posx - 1];
         }
     }
-    unsigned short*** X = devolverPunteroCerradura(N, x);
-    return X;
+    unsigned short*** cerradura = devolverPunteroCerradura(N, x);
+    return cerradura;
 }
 
 unsigned short hallar_DimensionPrimeraM(int* K)
