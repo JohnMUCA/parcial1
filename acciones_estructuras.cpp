@@ -1,12 +1,5 @@
 #include <acciones_estructuras.h>
 
-unsigned short** devolverPunteroMatriz(int n)
-{
-    unsigned short** matriz = new unsigned short*[n];
-    for (int i = 0; i < n; i++) matriz[i] = new unsigned short[n];
-    return matriz;
-}
-
 void rotacionAntiHorario(unsigned short** matrix, int N, int rotaciones)
 {
     unsigned short veces = rotaciones % 4; // Para evitar rotaciones innecesarias
@@ -23,8 +16,10 @@ void rotacionAntiHorario(unsigned short** matrix, int N, int rotaciones)
     }
 }
 
-unsigned short** alinearmatriz(unsigned short** matriz2, unsigned short n1, unsigned short n2,unsigned short rotaciones)
+unsigned short** alinearmatriz(unsigned short n1, unsigned short n2, unsigned short rotaciones)
 {
+
+    //Sale de ecuacion punto pendiente
     unsigned short fila0_1 = (n1-1)/2;
     unsigned short col0_1 = fila0_1;
     unsigned short fila0_2 = (n2-1)/2;
@@ -34,11 +29,16 @@ unsigned short** alinearmatriz(unsigned short** matriz2, unsigned short n1, unsi
     unsigned short dif_fila = fila0_2 - fila0_1;
     unsigned short dif_col = col0_2 - col0_1;
 
+    // Crear la matriz que se va a alinear
+
+    unsigned short** matrizaAlinear = devolverPunteroMatrizmxn(n2);
+    rellenarMatrizmxn(matrizaAlinear, n2);
+
     // Crear la matriz resultante
     unsigned short** matriz_resultante = devolverPunteroMatriz(n1);
     for (int i = 0; i < n1; i++) {
         for (int j = 0; j < n1; j++) {
-            matriz_resultante[i][j] = matriz2[i+dif_fila][j+dif_col];
+            matriz_resultante[i][j] = matrizaAlinear[i+dif_fila][j+dif_col];
         }
     }
 
