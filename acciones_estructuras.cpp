@@ -35,7 +35,7 @@ unsigned short** alinearmatriz(unsigned short n1, unsigned short n2, unsigned sh
     rellenarMatrizmxn(matrizaAlinear, n2);
 
     // Crear la matriz resultante
-    unsigned short** matriz_resultante = devolverPunteroMatriz(n1);
+    unsigned short** matriz_resultante = devolverPunteroMatrizmxn(n1);
     for (int i = 0; i < n1; i++) {
         for (int j = 0; j < n1; j++) {
             matriz_resultante[i][j] = matrizaAlinear[i+dif_fila][j+dif_col];
